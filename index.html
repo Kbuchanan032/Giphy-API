@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Giphy API Page</title>
+  </head>
+  <body>
+    <form id="gif-form">
+      <label for="gif-input">Search for a movie</label>
+      <input type="text" id="gif-input" /><br />
+
+      <!-- This button will trigger our AJAX call -->
+      <input id="find-gif" type="submit" value="gif Search" />
+    </form>
+    <div id="gifs-appear-here"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      //URL used to connect to GIPHY with my unique API key.
+      var queryURL =
+        "https://api.giphy.com/v1/gifs/trending?api_key=Skfq5QFyfEdHh75KHnMY0K0viAfpbYH7";
+      //Ajax function that connects and stores the data for my API. The console.log(response) should tell me if everything was linked correctly.
+      var gifs = ["sharks", "dinosaurs", "indians", "Valcanoes"];
+
+      $("find-gif").on("click", function(event) {
+        var gif = $(this).attr("data-gif");
+
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        }).then(function(response) {
+          $("gif-view").text(JSON.stringify(response));
+          console.log(response);
+          console.log(queryURL);
+
+          var results = response.data;
+
+          var gifDiv = $("<div>");
+          var gifImage = $("<img>");
+
+          console.log(gifs);
+
+          gifDiv.append(p);
+          gifDiv.append(gifImage);
+
+          $("#gifs-appear-here").prepend(gifDiv);
+          s;
+        });
+      });
+    </script>
+  </body>
+</html>
